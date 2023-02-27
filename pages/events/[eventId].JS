@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
-import EventContent from '../../components/events/event-detail/event-content'
-import EventLogistics from '../../components/events/event-detail/event-logistics'
-import EventSummary from '../../components/events/event-detail/event-summary'
+import EventContent from '../../components/events/event-content'
+import EventLogistics from '../../components/events/event-logistics'
+import EventSummary from '../../components/events/event-summary'
 import { getEventById } from '../../dummy-data'
 
 export default function EventDetailPage() {

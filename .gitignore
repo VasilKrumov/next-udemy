@@ -9,7 +9,7 @@ node_modules/
 # testing
 /coverage
 
-# next.js
+# next[eventId].js
 /.next/
 /out/
 next
@@ -34,3 +34,13 @@ yarn-error.log*
 
 # vercel
 .vercel
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/codeStyles/Project.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/jsLinters/eslint.xml
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/next-udemy.iml
+/.idea/prettier.xml
+/.idea/vcs.xml

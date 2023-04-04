@@ -3,13 +3,16 @@ import ResultsTitle from '../../components/events/results-title'
 import Button from '../../components/ui/Button'
 import ErrorAlert from '../../components/ui/error-alert'
 import { getFilteredEvents } from '../../helpers/api-util'
+import Head from 'next/head'
 
 export default function FilteredEventsPage(props) {
     if (props.hasError) {
         return (
-            <ErrorAlert>
-                <p>Invalid filter. Please adjust your values!</p>
-            </ErrorAlert>
+            <>
+                <ErrorAlert>
+                    <p>Invalid filter. Please adjust your values!</p>
+                </ErrorAlert>
+            </>
         )
     }
 
@@ -30,6 +33,10 @@ export default function FilteredEventsPage(props) {
 
     return (
         <>
+            <Head>
+                <title>Filtered Events</title>
+                <meta name="description" content={`All events for ${props.date.month}/${props.date.year}`} />
+            </Head>
             <ResultsTitle date={date} />
             <EventList items={events} />
         </>

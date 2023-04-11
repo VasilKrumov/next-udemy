@@ -1,7 +1,6 @@
-require('dotenv').config()
+import { connectDatabase, insertDocument } from '../../helpers/db-util'
 
-import { MongoClient } from 'mongodb'
-export default async function handler(req, res) {
+async function handler(req, res) {
     if (req.method === 'POST') {
         const userEmail = req.body.email
 
@@ -10,12 +9,25 @@ export default async function handler(req, res) {
             return
         }
 
-        const client = await MongoClient.connect(process.env.MONGODB_URI)
-        const db = client.db()
-        await db.collection('newsletter').insertOne({ email: userEmail })
+        let client
 
-        await client.close()
+        try {
+            client = await connectDatabase()
+        } catch (error) {
+            res.status(500).json({ message: 'Connecting to the database failed!' })
+            return
+        }
+
+        try {
+            await insertDocument(client, 'newsletter', { email: userEmail })
+            client.close()
+        } catch (error) {
+            res.status(500).json({ message: 'Inserting data failed!' })
+            return
+        }
 
         res.status(201).json({ message: 'Signed up!' })
     }
 }
+
+export default handler

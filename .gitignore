@@ -44,3 +44,4 @@ yarn-error.log*
 /.idea/next-udemy.iml
 /.idea/prettier.xml
 /.idea/vcs.xml
+/.env

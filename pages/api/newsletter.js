@@ -1,4 +1,7 @@
-export default function handler(req, res) {
+require('dotenv').config()
+
+import { MongoClient } from 'mongodb'
+export default async function handler(req, res) {
     if (req.method === 'POST') {
         const userEmail = req.body.email
 
@@ -7,7 +10,11 @@ export default function handler(req, res) {
             return
         }
 
-        console.log(userEmail)
+        const client = await MongoClient.connect(process.env.MONGODB_URI)
+        const db = client.db()
+        await db.collection('newsletter').insertOne({ email: userEmail })
+
+        await client.close()
 
         res.status(201).json({ message: 'Signed up!' })
     }
